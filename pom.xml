@@ -9,6 +9,7 @@
     <url>http://maven.apache.org</url>
   
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <hibernate.version>5.6.15.Final</hibernate.version>
@@ -38,7 +39,8 @@
             <type>jar</type>
         </dependency>
     </dependencies>
-    
+    <repositories>
+    </repositories>
     <build>
         <finalName>sgp-cron</finalName>
         <plugins>
@@ -49,7 +51,13 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.0</version>
             </plugin>
         </plugins>
     </build>

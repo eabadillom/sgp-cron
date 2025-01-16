@@ -31,7 +31,7 @@ public class SchedulerVacaciones implements ServletContextListener {
             scheduler.start();
             
             JobDetail jobdetail = new JobDetail("jobVacaciones", "group1", JobVacaciones.class);
-            Trigger trigger = new CronTrigger("triggerVacaciones", "group1", "0 22 10 * * ?");
+            Trigger trigger = new CronTrigger("triggerVacaciones", "group1", "0 35 13 * * ?");
             
             scheduler.scheduleJob(jobdetail, trigger);
             log.info("Termino la tarea programada para actualizar los periodos vacionales de los empleados. El sistema espera por la siguiente fecha.");
