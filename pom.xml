@@ -5,7 +5,7 @@
     <artifactId>sgp-cron</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>sgp-cron Maven Webapp</name>
+    <name>sgp-cron</name>
     <url>http://maven.apache.org</url>
   
     <properties>
