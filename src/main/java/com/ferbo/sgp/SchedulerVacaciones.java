@@ -1,12 +1,13 @@
 package com.ferbo.sgp;
 
 import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.quartz.CronTrigger;
 import org.quartz.JobDetail;
 import org.quartz.JobExecutionException;
@@ -19,7 +20,7 @@ import org.quartz.impl.StdSchedulerFactory;
 @WebListener
 public class SchedulerVacaciones implements ServletContextListener {
 
-    private static final org.apache.logging.log4j.Logger log = LogManager.getLogger(SchedulerVacaciones.class);
+    private static final Logger log = LogManager.getLogger(SchedulerVacaciones.class);
     private Scheduler scheduler;
 
     @Override
@@ -31,7 +32,7 @@ public class SchedulerVacaciones implements ServletContextListener {
             scheduler.start();
             
             JobDetail jobdetail = new JobDetail("jobVacaciones", "group1", JobVacaciones.class);
-            Trigger trigger = new CronTrigger("triggerVacaciones", "group1", "0 35 13 * * ?");
+            Trigger trigger = new CronTrigger("triggerVacaciones", "group1", "30 0 0 * * ?");
             
             scheduler.scheduleJob(jobdetail, trigger);
             log.info("Termino la tarea programada para actualizar los periodos vacionales de los empleados. El sistema espera por la siguiente fecha.");
@@ -42,7 +43,7 @@ public class SchedulerVacaciones implements ServletContextListener {
         } catch (ParseException ex) {
             log.warn("Hubo algun problema en la ejucion de la tarea programada. " + ex.getMessage());
         } catch (Exception ex){
-            log.error("Error: Problema desconocido. " + ex.getMessage());
+            log.error("Error: Problema desconocido. " + ex.getMessage(), ex);
         }
     }
     
