@@ -1,5 +1,5 @@
 <html>
 <body>
-<h2>Actualizacion del periodo vacacional</h2>
+<h2>Tareas automatizadas para SGP</h2>
 </body>
 </html>
