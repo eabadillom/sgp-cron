@@ -7,15 +7,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.quartz.CronTrigger;
 import org.quartz.JobDetail;
-import org.quartz.JobPersistenceException;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 
+import com.ferbo.sgp.core.util.DateUtil;
+import com.ferbo.sgp.core.util.SGPException;
 import com.ferbo.sgp.cron.jobs.SchedulerAusencias;
 import com.ferbo.sgp.cron.jobs.SchedulerVacaciones;
-import com.ferbo.sgp.util.DateUtil;
-import com.ferbo.sgp.util.SGPException;
 
 public class StartJobBL {
 	private static Logger log = LogManager.getLogger(StartJobBL.class);

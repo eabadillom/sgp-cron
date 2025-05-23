@@ -1,10 +1,11 @@
 package com.ferbo.sgp.cron.jobs;
 
-import com.ferbo.sgp.business.DiaNoLaboralBL;
-import com.ferbo.sgp.business.EmpleadoBL;
-import com.ferbo.sgp.model.Empleado;
-import com.ferbo.sgp.util.DateUtil;
-import com.ferbo.sgp.util.SGPException;
+import com.ferbo.sgp.core.business.DiaNoLaboralBL;
+import com.ferbo.sgp.core.business.EmpleadoBL;
+import com.ferbo.sgp.core.model.Empleado;
+import com.ferbo.sgp.core.util.DateUtil;
+import com.ferbo.sgp.core.util.SGPException;
+
 import java.util.Date;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;

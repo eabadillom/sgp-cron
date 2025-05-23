@@ -14,6 +14,10 @@ public class StartJobRequest {
 	@SerializedName(value = "cron")
 	protected String cron = null;
 	
+	public StartJobRequest() {
+		
+	}
+	
 	public StartJobRequest(String jobName, String jobGroup, String cron) {
 		super();
 		this.jobName = jobName;

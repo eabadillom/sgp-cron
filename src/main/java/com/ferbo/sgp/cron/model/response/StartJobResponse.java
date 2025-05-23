@@ -13,6 +13,10 @@ public class StartJobResponse extends StartJobRequest {
 	@SerializedName(value = "message")
 	protected String message = null;
 	
+	public StartJobResponse() {
+		super();
+	}
+	
 	public StartJobResponse(String jobName, String jobGroup, String cron) {
 		super(jobName, jobGroup, cron);
 	}
