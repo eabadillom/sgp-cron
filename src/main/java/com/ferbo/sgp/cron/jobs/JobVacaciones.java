@@ -1,4 +1,4 @@
-package com.ferbo.sgp;
+package com.ferbo.sgp.cron.jobs;
 
 import com.ferbo.sgp.business.EmpleadoBL;
 import com.ferbo.sgp.dao.EmpleadoDAO;
