@@ -11,10 +11,10 @@ import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 
-import com.ferbo.sgp.core.util.DateUtil;
-import com.ferbo.sgp.core.util.SGPException;
 import com.ferbo.sgp.cron.jobs.SchedulerAusencias;
 import com.ferbo.sgp.cron.jobs.SchedulerVacaciones;
+import com.ferbo.sgp.tools.exceptions.SGPException;
+import com.ferbo.sgp.tools.time.DateTool;
 
 public class StartJobBL {
 	private static Logger log = LogManager.getLogger(StartJobBL.class);
@@ -103,7 +103,7 @@ public class StartJobBL {
 						
 						scheduleJob = scheduler.rescheduleJob(trigger.getName(), trigger.getGroup(), nuevoTrigger);
 						
-						log.info("Job reprogramado: {}", DateUtil.getString( scheduleJob, DateUtil.FORMATO_ISO_Z));
+						log.info("Job reprogramado: {}", DateTool.getString( scheduleJob, DateTool.FORMATO_ISO_Z));
 					}
 				}
 			}

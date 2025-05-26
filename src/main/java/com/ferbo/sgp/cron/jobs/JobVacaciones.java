@@ -1,16 +1,17 @@
 package com.ferbo.sgp.cron.jobs;
 
-import com.ferbo.sgp.core.business.EmpleadoBL;
-import com.ferbo.sgp.core.dao.EmpleadoDAO;
-import com.ferbo.sgp.core.model.Empleado;
-import com.ferbo.sgp.core.util.SGPException;
-
 import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+
+import com.ferbo.sgp.core.business.EmpleadoBL;
+import com.ferbo.sgp.core.dao.EmpleadoDAO;
+import com.ferbo.sgp.core.model.Empleado;
+import com.ferbo.sgp.tools.exceptions.SGPException;
 
 public class JobVacaciones implements Job {
 

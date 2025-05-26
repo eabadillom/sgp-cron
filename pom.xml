@@ -53,6 +53,11 @@
 			<artifactId>spring-security-crypto</artifactId>
 			<version>5.5.8</version>
 		</dependency>
+		<dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.19.0</version>
+        </dependency>
     </dependencies>
     <repositories>
     </repositories>

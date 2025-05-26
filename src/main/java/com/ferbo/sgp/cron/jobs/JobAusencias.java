@@ -1,18 +1,19 @@
 package com.ferbo.sgp.cron.jobs;
 
-import com.ferbo.sgp.core.business.DiaNoLaboralBL;
-import com.ferbo.sgp.core.business.EmpleadoBL;
-import com.ferbo.sgp.core.model.Empleado;
-import com.ferbo.sgp.core.util.DateUtil;
-import com.ferbo.sgp.core.util.SGPException;
-
 import java.util.Date;
 import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+
+import com.ferbo.sgp.core.business.DiaNoLaboralBL;
+import com.ferbo.sgp.core.business.EmpleadoBL;
+import com.ferbo.sgp.core.model.Empleado;
+import com.ferbo.sgp.tools.exceptions.SGPException;
+import com.ferbo.sgp.tools.time.DateTool;
 
 public class JobAusencias implements Job {
 
@@ -24,9 +25,9 @@ public class JobAusencias implements Job {
 		try {
 			log.info("Inicia el proceso para generar los registros de ausencias");
 
-			Date hoy = DateUtil.now();
-			Date ayerInicio = DateUtil.addDay(hoy, -1);
-			DateUtil.setTime(ayerInicio, 0, 0, 0, 0);
+			Date hoy = DateTool.now();
+			Date ayerInicio = DateTool.addDay(hoy, -1);
+			DateTool.setTime(ayerInicio, 0, 0, 0, 0);
 
 			if (DiaNoLaboralBL.esDiaFestivo(ayerInicio, "MX")) {
 				log.info("El dia de ayer no fue laborable");

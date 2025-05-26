@@ -15,11 +15,11 @@ import org.apache.logging.log4j.Logger;
 
 import com.ferbo.sgp.core.dao.SistemaDAO;
 import com.ferbo.sgp.core.model.Sistema;
-import com.ferbo.sgp.core.util.SGPException;
 import com.ferbo.sgp.cron.business.StartJobBL;
 import com.ferbo.sgp.cron.model.request.StartJobRequest;
 import com.ferbo.sgp.cron.model.response.StartJobResponse;
-import com.ferbo.sgp.tools.SecurityTool;
+import com.ferbo.sgp.tools.exceptions.SGPException;
+import com.ferbo.sgp.tools.security.SecurityTool;
 import com.google.gson.Gson;
 
 /**
@@ -52,11 +52,11 @@ public class StartJobServlet extends HttpServlet {
         Integer          httpStatus   = null;
         
         try {
+        	gson = new Gson();
         	jobResponse = new StartJobResponse();
         	this.validarSesion(request, response);
         	
         	jsonBuffer = new StringBuilder();
-        	gson = new Gson();
         	
         	reader = request.getReader();
 			while ((linea = reader.readLine()) != null) {
