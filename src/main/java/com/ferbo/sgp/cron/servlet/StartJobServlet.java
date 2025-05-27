@@ -152,8 +152,8 @@ public class StartJobServlet extends HttpServlet {
         if(SecurityTool.verifyPassword(password, sistema.get().getPassword()) == false)
         		throw new SGPException("Información incorrecta.");	
         
-    	log.info("OK - username: {}, password: {}, nombreSistema: {}, passwordSistema: {}",
-    			username, password, sistema.get().getNombre(), sistema.get().getPassword());
+    	log.info("OK - username: {}, nombreSistema: {}",
+    			username, sistema.get().getNombre());
 	}
 
 }
