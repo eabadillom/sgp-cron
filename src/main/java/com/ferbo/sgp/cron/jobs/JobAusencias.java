@@ -21,6 +21,8 @@ public class JobAusencias implements Job {
 
 	@Override
 	public void execute(JobExecutionContext jec) throws JobExecutionException {
+		
+		List<Empleado> empleados = null;
 
 		try {
 			log.info("Inicia el proceso para generar los registros de ausencias");
@@ -30,14 +32,14 @@ public class JobAusencias implements Job {
 			DateTool.setTime(ayerInicio, 0, 0, 0, 0);
 
 			if (DiaNoLaboralBL.esDiaFestivo(ayerInicio, "MX")) {
-				log.info("El dia de ayer no fue laborable");
+				log.info("Dia NO laboral: {}", DateTool.getString(ayerInicio, DateTool.FORMATO_DD_MM_YYYY));
 				return;
 			}
-
-			List<Empleado> empleados = EmpleadoBL.obtenerEmpleados();
+			
+			empleados = EmpleadoBL.obtenerEmpleadosActivos(hoy);
 
 			for (Empleado empleado : empleados) {
-				log.info("Generando registro de ausencia para {}, {}", empleado.getNombre(), empleado.getPrimerApellido(), empleado.getSegundoApellido());
+				log.info("Evaluando ausencia para {} {} {}", empleado.getNombre(), empleado.getPrimerApellido(), empleado.getSegundoApellido());
 				EmpleadoBL.generarAusencia(empleado);
 			}
 
