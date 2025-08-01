@@ -12,6 +12,7 @@ import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 
 import com.ferbo.sgp.cron.jobs.SchedulerAusencias;
+import com.ferbo.sgp.cron.jobs.SchedulerNotificacionMovil;
 import com.ferbo.sgp.cron.jobs.SchedulerVacaciones;
 import com.ferbo.sgp.tools.exceptions.SGPException;
 import com.ferbo.sgp.tools.time.DateTool;
@@ -38,6 +39,9 @@ public class StartJobBL {
 		
 		if("jobVacaciones".equals(jobName))
 			return SchedulerVacaciones.getScheduler();
+                
+                if("jobNotificacionMovil".equals(jobName))
+                        return SchedulerNotificacionMovil.getScheduler();
 		
 		throw new UnsupportedOperationException();
 	}
