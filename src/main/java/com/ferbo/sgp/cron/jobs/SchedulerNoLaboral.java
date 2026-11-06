@@ -38,7 +38,7 @@ public class SchedulerNoLaboral implements ServletContextListener{
                         scheduler.start();
 
 			JobDetail jobdetail = new JobDetail("jobNoLaboral", "sgpGroup", JobNoLaboral.class);
-			Trigger trigger = new CronTrigger("triggerNoLaboral", "sgpGroup", "0 11 16 * * ?");
+			Trigger trigger = new CronTrigger("triggerNoLaboral", "sgpGroup", "0 45 23 * * ?");
 
 			scheduler.scheduleJob(jobdetail, trigger);
 			log.info("Termino la tarea programada para registrar el día no laboral.");
