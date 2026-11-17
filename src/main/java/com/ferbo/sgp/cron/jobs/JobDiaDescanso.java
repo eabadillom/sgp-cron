@@ -19,6 +19,8 @@ public class JobDiaDescanso implements Job {
 
     public static final Logger log = LogManager.getLogger(JobDiaDescanso.class);
 
+    private static final String GMT6 = "GMT-06:00";
+
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
         List<Empleado> empleados;
@@ -26,16 +28,21 @@ public class JobDiaDescanso implements Job {
         try {
 
         log.info("Se establece el día de mañana");
-        Date maniana = DateTool.getMananaDateMexico();
-
+        Date maniana;
+        try {
+            maniana = DateTool.getMananaDatePorZonaHoraria(GMT6);
+        } catch (SGPException ex) {
+            throw new JobExecutionException(ex.getMessage());
+        }
+        
         log.info("Se busca si el día de mañana es no laboral");
-        boolean esLaboral = DiaNoLaboralBL.esDiaFestivoAmpliado(maniana, "MX");
+        boolean esLaboral = DiaNoLaboralBL.esDiaNoLaboral(maniana, "MX");
 
         if (esLaboral) {
             log.info("El día {} no es laborable. Omitiendo proceso de registro de día descanso.", maniana);
             return;
         }   
-
+        log.info("El día de mañana {}, es un día laborable para todos los empleados.", maniana);
         log.info("Inicia proceso para obtener los empleados vigenes hasta el día de mañana");
         empleados = EmpleadoBL.obtenerEmpleadosActivos(maniana);
         log.info("Finaliza proceso para obtener los empleados vigenes hasta el día de mañana");

@@ -19,20 +19,27 @@ public class JobNoLaboral implements Job {
 
     private static final Logger log = LogManager.getLogger(JobNoLaboral.class);
 
+    private static final String GMT6 = "GMT-06:00";
+
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
 
         log.info("Se establece el día de mañana");
-        Date maniana = DateTool.getMananaDateMexico();
+        Date maniana;
+        try {
+            maniana = DateTool.getMananaDatePorZonaHoraria(GMT6);
+        } catch (SGPException ex) {
+            throw new JobExecutionException(ex.getMessage());
+        }
 
         log.info("Se busca si el día de mañana es no laboral");
-        boolean esLaboral = DiaNoLaboralBL.esDiaFestivoAmpliado(maniana, "MX");
+        boolean esLaboral = DiaNoLaboralBL.esDiaNoLaboral(maniana, "MX");
 
         if (!esLaboral) {
             log.info("El día {} es laborable. Omitiendo proceso de registro de día no laboral.", maniana);
             return;
         }   
-        
+        log.info("El día de mañana {}, es un día no laborable para todos los empleados.", maniana);
         List<Empleado> empleados;
         try {
             log.info("Inicia proceso para obtener los empleados vigenes hasta el día de mañana");
