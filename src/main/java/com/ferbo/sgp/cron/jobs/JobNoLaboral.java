@@ -19,15 +19,13 @@ public class JobNoLaboral implements Job {
 
     private static final Logger log = LogManager.getLogger(JobNoLaboral.class);
 
-    private static final String GMT6 = "GMT-06:00";
-
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
 
         log.info("Se establece el día de mañana");
         Date maniana;
         try {
-            maniana = DateTool.getMananaDatePorZonaHoraria(GMT6);
+            maniana = DateTool.getManianaDate();
         } catch (SGPException ex) {
             throw new JobExecutionException(ex.getMessage());
         }
@@ -49,7 +47,7 @@ public class JobNoLaboral implements Job {
         for (Empleado empleado : empleados) {
             EmpleadoBL.generarDiaNoLaboral(empleado);
         }
-        log.info("Finaliza proceso para asignar el día no laboral a cada uno de los empleado en el sistema");
+        log.info("Finaliza proceso para asignar el día no laboral a cada uno de los empleados en el sistema");
         } catch (SGPException ex) {
             throw new JobExecutionException(ex.getMessage());
         }
