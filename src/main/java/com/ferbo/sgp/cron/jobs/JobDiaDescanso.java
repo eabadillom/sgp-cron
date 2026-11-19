@@ -19,8 +19,6 @@ public class JobDiaDescanso implements Job {
 
     public static final Logger log = LogManager.getLogger(JobDiaDescanso.class);
 
-    private static final String GMT6 = "GMT-06:00";
-
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
         List<Empleado> empleados;
@@ -30,7 +28,7 @@ public class JobDiaDescanso implements Job {
         log.info("Se establece el día de mañana");
         Date maniana;
         try {
-            maniana = DateTool.getMananaDatePorZonaHoraria(GMT6);
+            maniana = DateTool.getManianaDate();
         } catch (SGPException ex) {
             throw new JobExecutionException(ex.getMessage());
         }
@@ -50,7 +48,7 @@ public class JobDiaDescanso implements Job {
         for (Empleado empleado : empleados) {
             EmpleadoBL.generarDiaDescanso(empleado);
         }
-        log.info("Finaliza proceso para asignar el día de descanso para cada uno de los empleado en el sistema");
+        log.info("Finaliza proceso para asignar el día de descanso para cada uno de los empleados en el sistema");
 
         } catch (SGPException ex) {
             throw new JobExecutionException(ex.getMessage());
