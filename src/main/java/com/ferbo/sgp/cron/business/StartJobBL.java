@@ -12,6 +12,8 @@ import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 
 import com.ferbo.sgp.cron.jobs.SchedulerAusencias;
+import com.ferbo.sgp.cron.jobs.SchedulerDiaDescanso;
+import com.ferbo.sgp.cron.jobs.SchedulerNoLaboral;
 import com.ferbo.sgp.cron.jobs.SchedulerNotificacionMovil;
 import com.ferbo.sgp.cron.jobs.SchedulerVacaciones;
 import com.ferbo.sgp.tools.exceptions.SGPException;
@@ -34,14 +36,20 @@ public class StartJobBL {
 	}
 	
 	private Scheduler getScheduler(String jobName) {
-		if("jobAusencias".equals(jobName))
+		if ("jobAusencias".equals(jobName))
 			return SchedulerAusencias.getScheduler();
-		
-		if("jobVacaciones".equals(jobName))
+
+		if ("jobVacaciones".equals(jobName))
 			return SchedulerVacaciones.getScheduler();
+
+		if ("jobNotificacionMovil".equals(jobName))
+			return SchedulerNotificacionMovil.getScheduler();
                 
-                if("jobNotificacionMovil".equals(jobName))
-                        return SchedulerNotificacionMovil.getScheduler();
+        if("jobDiaDescanso".equals(jobName))
+        	return SchedulerDiaDescanso.getScheduler();
+        
+        if("jobNoLaboral".equals(jobName))
+        	return SchedulerNoLaboral.getScheduler();
 		
 		throw new UnsupportedOperationException();
 	}
